@@ -76,8 +76,8 @@ RUN echo "http://dl-2.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories
 RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-ARG GECKODRIVER_VERSION=0.15.0
-ARG GECKODRIVER_FILE=v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz
+ENV GECKODRIVER_VERSION=0.15.0
+ENV GECKODRIVER_FILE=v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz
 RUN curl -s -o /tmp/geckodriver.tar.gz -L \
   https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_FILE \
   && rm -rf /usr/bin/geckodriver \
