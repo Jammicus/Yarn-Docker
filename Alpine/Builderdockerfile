@@ -72,9 +72,8 @@ RUN apk add --no-cache curl gnupg tar \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz 
 
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-
+# RUN echo "http://dl-2.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories
+# RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+# RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 CMD ["/bin/bash"]

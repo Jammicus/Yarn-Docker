@@ -1,0 +1,27 @@
+
+FROM ubuntu:17.10
+
+RUN apt-get update
+RUN apt install -y curl \
+                   build-essential \
+                   wget
+
+# Install Node
+RUN curl --silent --location https://deb.nodesource.com/setup_8.x | bash - 
+RUN apt-get install nodejs -y
+
+# Install Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" |  tee /etc/apt/sources.list.d/yarn.list
+
+# Install Firefox
+WORKDIR /usr/local
+RUN wget http://ftp.mozilla.org/pub/firefox/releases/58.0/linux-x86_64/en-US/firefox-58.0.tar.bz2
+RUN tar xvjf firefox-58.0.tar.bz2 
+RUN ln -s /usr/local/firefox/firefox /usr/bin/firefox
+
+WORKDIR /home
+
+ENV FIREFOX_BIN /usr/bin/firefox
+
+CMD ["/bin/bash"]

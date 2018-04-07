@@ -1,0 +1,19 @@
+FROM ubuntu:17.10
+
+RUN apt-get update
+RUN apt install -y curl \
+                   build-essential
+RUN curl --silent --location https://deb.nodesource.com/setup_8.x | bash - 
+RUN apt-get install nodejs -y
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" |  tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update 
+RUN apt-get install yarn -y
+
+RUN apt-get install chromium-browser -y
+
+WORKDIR /home
+
+CMD ["/bin/bash"]

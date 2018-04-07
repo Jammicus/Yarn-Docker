@@ -13,6 +13,7 @@ RUN apk add --no-cache --virtual .build-deps \
                                  libgcc \
                                  linux-headers \
                                  make \
+                                 maven \
                                  python 
 
 # Replace shell with Bash
@@ -71,16 +72,12 @@ RUN apk add --no-cache curl gnupg tar \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz 
 
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+# Install Firefox
+WORKDIR /usr/local
+RUN wget http://ftp.mozilla.org/pub/firefox/releases/58.0/linux-x86_64/en-US/firefox-58.0.tar.bz2
+RUN yum remove firefox
+RUN tar xvjf firefox-58.0.tar.bz2 
+RUN ln -s /usr/local/firefox/firefox /usr/bin/firefox
 
-RUN apk update
-RUN apk add chromium=64.0.3282.168-r0
-
-ENV CHROME_BIN=/usr/bin/chromium-browser
-ENV CHROME_PATH=/usr/lib/chromium/
-
-RUN echo 'CHROMIUM_FLAGS="-no-sandbox --headless --disable-background-networking --disable-extensions"' > /etc/chromium/chromium.conf
-# Command to run browser: chromium-browser
+WORKDIR /home
 CMD ["/bin/bash"]
