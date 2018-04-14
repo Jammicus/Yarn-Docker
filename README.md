@@ -6,6 +6,10 @@ Docker files for testing applications that use  Node and Yarn on different opera
 
 From the root, run one of the following:
 
+### Builder
+
+`docker build -f Alpine/BuilderDockerfile .`
+
 ### Firefox
 
 `docker build -f Alpine/Firefox .`
@@ -18,6 +22,10 @@ From the root, run one of the following:
 
 From the root, run one of the following:
 
+### Builder
+
+`docker build -f Centos/BuilderDockerfile .`
+
 ### Firefox
 
 `docker build -f Centos/Firefox .`
@@ -29,6 +37,10 @@ From the root, run one of the following:
 ## Ubuntu
 
 From the root, run one of the following:
+
+### Builder
+
+`docker build -f Ubuntu/BuilderDockerfile .`
 
 ### Firefox
 

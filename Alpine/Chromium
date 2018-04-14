@@ -19,7 +19,7 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Set node version
-ENV NODE_VERSION 7.7.4
+ENV NODE_VERSION 8.11.1
 
 # Install node 
 # gpg keys listed at https://github.com/nodejs/node#release-team

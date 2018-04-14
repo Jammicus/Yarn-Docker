@@ -17,13 +17,6 @@ RUN yum -y install nodejs
 RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
 RUN yum -y install yarn
 
-# Install Chrome
-ADD Centos/.yum-repos/google-chrome.repo /etc/yum.repos.d/
-RUN yum-config-manager --enable google-chrome.repo
-
-RUN yum install -y google-chrome-stable
-# Command to run browser: google-chrome
-
 WORKDIR /home
 
 CMD ["/bin/bash"]
