@@ -18,6 +18,22 @@ From the root, run one of the following:
 
 `docker build -f Alpine/Chromium .`
 
+## Debian
+
+From the root, run one of the following:
+
+### Builder
+
+`docker build -f Debian/BuilderDockerfile .`
+
+### Firefox
+
+`docker build -f Debian/Firefox .`
+
+### Chromium
+
+`docker build -f Debian/Chromium .`
+
 ## Centos
 
 From the root, run one of the following:
