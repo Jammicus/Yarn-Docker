@@ -84,5 +84,7 @@ ENV CHROME_PATH=/usr/lib/chromium/
 RUN echo 'CHROMIUM_FLAGS="-no-sandbox --headless --disable-background-networking --disable-extensions"' > /etc/chromium/chromium.conf
 # Command to run browser: chromium-browser
 
+RUN chromium-browser --version
+
 WORKDIR /home
 CMD ["/bin/bash"]

@@ -1,0 +1,29 @@
+FROM centos:7
+
+RUN yum update -y
+RUN yum install -y wget
+
+RUN yum groupinstall "Development tools" -y 
+
+# Install Node
+RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - 
+RUN yum -y install nodejs
+
+# Install Yarn
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN yum -y install yarn
+
+RUN yum install -y epel-release
+RUN yum install -y chromium
+
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV CHROME_PATH=/usr/lib/chromium/
+
+RUN echo 'CHROMIUM_FLAGS="--no-sandbox --headless --disable-background-networking --disable-extensions"' >> /etc/chromium/chromium.conf
+# Command to run browser: chromium-browser
+
+RUN chromium-browser --version
+
+WORKDIR /home
+
+CMD ["/bin/bash"]

@@ -46,9 +46,9 @@ From the root, run one of the following:
 
 `docker build -f Centos/Firefox .`
 
-### Chrome
+### Chromium
 
-`docker build -f Centos/Chrome .`
+`docker build -f Centos/Chromium .`
 
 ## Ubuntu
 

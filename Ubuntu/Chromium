@@ -11,8 +11,19 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" |  tee /etc/apt/source
 
 RUN apt-get update 
 RUN apt-get install yarn -y
+RUN apt-get remove chromium
 
-RUN apt-get install chromium-browser -y
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository  ppa:canonical-chromium-builds/stage 
+RUN apt-get -y update
+RUN apt-get install -y chromium-browser
+
+RUN chromium-browser --version
+
+RUN echo 'CHROMIUM_FLAGS="--no-sandbox --disable-gpu"' > /etc/chromium-browser/default
+# Command to run browser: chromium-browser
+
+RUN chromium-browser --version
 
 WORKDIR /home
 
