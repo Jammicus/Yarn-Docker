@@ -2,22 +2,6 @@
 Docker files for testing applications that use  Node and Yarn on different operating systems
 
 
-## Alpine
-
-From the root, run one of the following:
-
-### Builder
-
-`docker build -f Alpine/BuilderDockerfile .`
-
-### Firefox
-
-`docker build -f Alpine/Firefox .`
-
-### Chromium
-
-`docker build -f Alpine/Chromium .`
-
 ## Debian
 
 From the root, run one of the following:
