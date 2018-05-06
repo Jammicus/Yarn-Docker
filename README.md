@@ -26,11 +26,11 @@ From the root, run one of the following:
 
 `docker build -f Debian/BuilderDockerfile .`
 
-### Firefox
+### Firefox (WORK IN PROGRESS)
 
 `docker build -f Debian/Firefox .`
 
-### Chromium
+### Chromium (WORK IN PROGRESS) 
 
 `docker build -f Debian/Chromium .`
 
@@ -42,11 +42,11 @@ From the root, run one of the following:
 
 `docker build -f Centos/BuilderDockerfile .`
 
-### Firefox
+### Firefox (WORK IN PROGRESS)
 
 `docker build -f Centos/Firefox .`
 
-### Chromium
+### Chromium (WORK IN PROGRESS)
 
 `docker build -f Centos/Chromium .`
 
@@ -58,10 +58,10 @@ From the root, run one of the following:
 
 `docker build -f Ubuntu/BuilderDockerfile .`
 
-### Firefox
+### Firefox (WORK IN PROGRESS)
 
 `docker build -f Ubuntu/Firefox .`
 
-### Chromium
+### Chromium (WORK IN PROGRESS)
 
 `docker build -f Ubuntu/Chromium .`
