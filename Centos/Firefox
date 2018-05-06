@@ -1,5 +1,3 @@
-# WORK IN PROGRESS
-
 FROM centos:7
 
 ENV NODE_VERSION 9.9.0
@@ -10,7 +8,38 @@ ENV YARN_VERSION 1.6.0
 ENV PATH /opt/yarn/yarn-v${YARN_VERSION}/bin:`yarn global bin`:$PATH
 
 RUN yum update -y
-RUN yum install bzip2 -y
+RUN yum install -y bzip2 \
+                   libICE \
+                   centos-indexhtml \
+                   liberation-fonts-common \
+                   startup-notification \
+                   graphite2 \
+                   gtk3 \
+                   harfbuzz \
+                   hunspell \
+                   hunspell-en-US \
+                   libICE \
+                   libSM \
+                   libXcomposite \
+                   libXcursor \
+                   libXdamage \
+                   libXext \
+                   libXfixes \
+                   libXft \
+                   libXi \
+                   libXinerama \
+                   libXrandr \
+                   libXrender \
+                   libXt \
+                   libXxf86vm \
+                   libthai \
+                   libxshmfence \
+                   mesa-libEGL \
+                   mesa-libGL \
+                   mozilla-filesystem \
+                   pango \
+                   pixman \
+                   xcb-util
 
 RUN mkdir /opt/nodejs
 
@@ -51,6 +80,7 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --import && \
     rm -rf /opt/yarn/yarn-v${YARN_VERSION}.tar.gz /opt/yarn/yarn-v${YARN_VERSION}.tar.gz.asc
 
 # Install Firefox
+# To run, use 'firefox --headless'
 WORKDIR /usr/local
 RUN curl -O http://ftp.mozilla.org/pub/firefox/releases/58.0/linux-x86_64/en-US/firefox-58.0.tar.bz2
 RUN yum remove firefox
@@ -60,5 +90,7 @@ RUN ln -s /usr/local/firefox/firefox /usr/bin/firefox
 WORKDIR /home
 
 ENV FIREFOX_BIN /usr/bin/firefox
+
+
 
 CMD ["/bin/bash"]
