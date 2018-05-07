@@ -9,7 +9,14 @@ ENV PATH /opt/nodejs/node-v${NODE_VERSION}/bin:$PATH
 ENV YARN_VERSION 1.6.0
 ENV PATH /opt/yarn/yarn-v${YARN_VERSION}/bin:`yarn global bin`:$PATH
 
-RUN yum update -y
+# Add build as a user
+RUN groupadd -r build && useradd -r -g build -G audio,video build \
+    && mkdir -p /home/build && chown -R build:build /home/build
+
+
+RUN yum update -y 
+RUN yum install -y epel-release 
+RUN yum install -y libappindicator-gtk3
 
 RUN mkdir /opt/nodejs
 
@@ -49,17 +56,26 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --import && \
     tar zvxf yarn-v${YARN_VERSION}.tar.gz -C /opt/yarn && \
     rm -rf /opt/yarn/yarn-v${YARN_VERSION}.tar.gz /opt/yarn/yarn-v${YARN_VERSION}.tar.gz.asc
 
-RUN yum install -y epel-release
-RUN yum install -y chromium
+WORKDIR /etc/yum.repos.d
+RUN touch google-x86_64.repo && \
+    echo "[google64]" >> google-x86_64.repo && \
+    echo "name=Google - x86_64" >> google-x86_64.repo && \
+    echo "baseurl=http://dl.google.com/linux/rpm/stable/x86_64" >> google-x86_64.repo && \
+    echo "enabled=1" >> google-x86_64.repo && \
+    echo "gpgcheck=1" >> google-x86_64.repo && \
+    echo "gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub" >> google-x86_64.repo
 
-ENV CHROME_BIN=/usr/bin/chromium-browser
-ENV CHROME_PATH=/usr/lib/chromium/
 
-RUN echo 'CHROMIUM_FLAGS="--no-sandbox --headless"' >> /etc/chromium/chromium.conf
-# Command to run browser: chromium-browser
+RUN yum install -y google-chrome-stable
 
-RUN chromium-browser --version
+# Handle fonts error
+WORKDIR /etc/fonts/
+RUN sed -i '146d' fonts.conf
+RUN sed -i '86d' fonts.conf
 
+RUN fc-cache -fv
+
+USER build
 WORKDIR /home
 
 CMD ["/bin/bash"]

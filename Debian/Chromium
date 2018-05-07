@@ -9,11 +9,19 @@ ENV PATH /opt/nodejs/node-v${NODE_VERSION}/bin:$PATH
 ENV YARN_VERSION 1.6.0
 ENV PATH /opt/yarn/yarn-v${YARN_VERSION}/bin:`yarn global bin`:$PATH
 
+# Add build as a user
+RUN groupadd -r build && useradd -r -g build -G audio,video build \
+    && mkdir -p /home/build && chown -R build:build /home/build
+
+
 RUN apt-get update
 RUN apt install -y curl \
                    build-essential \
                    dirmngr \
-                   gpg 
+                   gpg \
+                   apt-transport-https \
+	                 ca-certificates \
+  	               gnupg 
 
 RUN apt-get remove -y nodejs                    
 RUN mkdir /opt/nodejs
@@ -55,19 +63,14 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --import && \
     rm -rf /opt/yarn/yarn-v${YARN_VERSION}.tar.gz /opt/yarn/yarn-v${YARN_VERSION}.tar.gz.asc
 
 
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:canonical-chromium-builds/stage 
-RUN apt-get remove chromium-browser
-RUN apt-get install -y chromium
+RUN curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+   echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
+   apt-get update 
 
-ENV CHROME_BIN=/usr/bin/chromium-browser
-ENV CHROME_PATH=/usr/lib/chromium/
+RUN apt-get install -y google-chrome-stable
 
-RUN echo 'export CHROMIUM_FLAGS="-no-sandbox --headless"' >> /etc/chromium.d/default-flags
-# # Command to run browser: chromium
 
-RUN chromium --version
-
+USER build
 WORKDIR /home
 
 CMD ["/bin/bash"]
