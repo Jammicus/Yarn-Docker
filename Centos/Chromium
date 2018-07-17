@@ -2,11 +2,11 @@
 
 FROM centos:7
 
-ENV NODE_VERSION 9.9.0
+ENV NODE_VERSION 8.11.0
 ENV NODEJS_HOME /opt/nodejs/node-v${NODE_VERSION}/bin
 ENV PATH /opt/nodejs/node-v${NODE_VERSION}/bin:$PATH
 
-ENV YARN_VERSION 1.6.0
+ENV YARN_VERSION 1.7.0
 ENV PATH /opt/yarn/yarn-v${YARN_VERSION}/bin:`yarn global bin`:$PATH
 
 # Add build as a user
@@ -75,7 +75,15 @@ RUN sed -i '86d' fonts.conf
 
 RUN fc-cache -fv
 
+RUN echo 'kernel.unprivileged_userns_clone=1' > /etc/sysctl.d/00-local-userns.conf
+
 USER build
 WORKDIR /home
 
-CMD ["/bin/bash"]
+
+# Expose port 9222
+EXPOSE 9222
+
+# Autorun chrome headless with no GPU
+ENTRYPOINT [ "google-chrome-stable" ]
+CMD [ "--headless", "--disable-gpu", "--remote-debugging-address=0.0.0.0", "--remote-debugging-port=9222" ]

@@ -1,10 +1,10 @@
 FROM ubuntu:17.10
 
-ENV NODE_VERSION 9.9.0
+ENV NODE_VERSION 8.11.0
 ENV NODEJS_HOME /opt/nodejs/node-v${NODE_VERSION}/bin
 ENV PATH /opt/nodejs/node-v${NODE_VERSION}/bin:$PATH
 
-ENV YARN_VERSION 1.6.0
+ENV YARN_VERSION 1.7.0
 ENV PATH /opt/yarn/yarn-v${YARN_VERSION}/bin:`yarn global bin`:$PATH
 
 RUN apt-get update
