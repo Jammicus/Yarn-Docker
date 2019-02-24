@@ -7,6 +7,7 @@ ENV PATH /opt/nodejs/node-v${NODE_VERSION}/bin:$PATH
 ENV YARN_VERSION 1.6.0
 ENV PATH /opt/yarn/yarn-v${YARN_VERSION}/bin:`yarn global bin`:$PATH
 
+ENV FIREFOX_VERSION 64.0
 
 RUN apt-get update
 RUN apt install -y curl \
@@ -200,9 +201,10 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --import && \
 
 # Install Firefox
 WORKDIR /usr/local
-RUN curl -OL http://ftp.mozilla.org/pub/firefox/releases/58.0/linux-x86_64/en-US/firefox-58.0.tar.bz2
-RUN tar xvjf firefox-58.0.tar.bz2 
+RUN curl -OL http://ftp.mozilla.org/pub/firefox/releases/${FIREFOX_VERSION}/linux-x86_64/en-US/firefox-${FIREFOX_VERSION}.tar.bz2
+RUN tar xvjf firefox-${FIREFOX_VERSION}.tar.bz2 
 RUN ln -s /usr/local/firefox/firefox /usr/bin/firefox
+RUN rm -rf firefox-${FIREFOX_VERSION}.tar.bz2 
 
 WORKDIR /home
 
