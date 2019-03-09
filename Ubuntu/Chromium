@@ -73,8 +73,6 @@ RUN chromium-browser --version
 RUN echo 'CHROMIUM_FLAGS="--no-sandbox --disable-gpu"' > /etc/chromium-browser/default
 # Command to run browser: chromium-browser
 
-RUN chromium-browser --version
-
 WORKDIR /home
 
 CMD ["/bin/bash"]

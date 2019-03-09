@@ -74,8 +74,6 @@ ENV CHROME_PATH=/usr/lib/chromium/
 RUN echo 'export CHROMIUM_FLAGS="-no-sandbox --headless"' >> /etc/chromium.d/default-flags
 # # Command to run browser: chromium
 
-RUN chromium --version
-
 WORKDIR /home
 
 CMD ["/bin/bash"]

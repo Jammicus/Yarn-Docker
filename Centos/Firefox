@@ -101,6 +101,6 @@ WORKDIR /home
 
 ENV FIREFOX_BIN /usr/bin/firefox
 
-
+# To run use :`firefox --headless`
 
 CMD ["/bin/bash"]

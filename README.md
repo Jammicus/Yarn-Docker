@@ -10,7 +10,7 @@ From the root, run one of the following:
 
 `docker build -f Debian/BuilderDockerfile .`
 
-### Firefox (WORK IN PROGRESS)
+### Firefox 
 
 `docker build -f Debian/Firefox .`
 
@@ -26,7 +26,7 @@ From the root, run one of the following:
 
 `docker build -f Centos/BuilderDockerfile .`
 
-### Firefox (WORK IN PROGRESS)
+### Firefox 
 
 `docker build -f Centos/Firefox .`
 
@@ -42,7 +42,7 @@ From the root, run one of the following:
 
 `docker build -f Ubuntu/BuilderDockerfile .`
 
-### Firefox (WORK IN PROGRESS)
+### Firefox 
 
 `docker build -f Ubuntu/Firefox .`
 
