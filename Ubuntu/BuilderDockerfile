@@ -1,10 +1,10 @@
 FROM ubuntu:18.04
 
-ENV NODE_VERSION 10.15.0
+ENV NODE_VERSION 12.18.4
 ENV NODEJS_HOME /opt/nodejs/node-v${NODE_VERSION}/bin
 ENV PATH /opt/nodejs/node-v${NODE_VERSION}/bin:$PATH
 
-ENV YARN_VERSION 1.6.0
+ENV YARN_VERSION 1.22.5
 ENV PATH /opt/yarn/yarn-v${YARN_VERSION}/bin:`yarn global bin`:$PATH
 
 RUN apt-get update
