@@ -25,22 +25,3 @@ jobs:
       uses: actions/checkout@v2   
     - name: Test
       run: go test -v
-  run:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    steps:
-    - name: Install Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: ${{ matrix.go-version }}
-    - name: Install docker   
-      uses: docker-practice/actions-setup-docker@master
-      with:
-        docker_channel: nightly
-        # this value please see https://github.com/AkihiroSuda/moby-snapshot/releases
-        docker_nightly_version: snapshot-20201008
-    - name: Checkout code
-      uses: actions/checkout@v2   
-    - name: Test
-      run: go test -v 
-      
