@@ -8,7 +8,7 @@ From the root, run one of the following:
 
 ### Builder
 
-`docker build -f Debian/BuilderDockerfile .`
+`docker build Debian/`
 
 ## Centos
 
@@ -16,7 +16,7 @@ From the root, run one of the following:
 
 ### Builder
 
-`docker build -f Centos/BuilderDockerfile .`
+`docker build Centos/`
 
 ## Ubuntu
 
@@ -24,4 +24,4 @@ From the root, run one of the following:
 
 ### Builder
 
-`docker build -f Ubuntu/BuilderDockerfile .`
+`docker build Ubuntu/`
