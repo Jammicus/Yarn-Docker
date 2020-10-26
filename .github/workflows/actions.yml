@@ -19,9 +19,8 @@ jobs:
     - name: Install docker   
       uses: docker-practice/actions-setup-docker@master
       with:
-        docker_channel: nightly
+        docker_channel: stable
         # this value please see https://github.com/AkihiroSuda/moby-snapshot/releases
-        docker_nightly_version: snapshot-20201008
     - name: Checkout code
       uses: actions/checkout@v2   
     - name: Test
