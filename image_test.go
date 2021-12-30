@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/docker"
@@ -40,6 +41,7 @@ func TestDockerfiles(t *testing.T) {
 
 	for _, image := range images {
 
+		fmt.Printf("Building image %v", image.path)
 		buildOptions := &docker.BuildOptions{
 			Tags: []string{image.tag},
 		}
